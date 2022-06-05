@@ -24,6 +24,35 @@
     <meta name="mobile-web-app-title" content="PWAConf" />
 
     <script src="/02/app.js"></script>
+
+    <script>
+      let deferredPrompt = null;
+      
+     window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+    });
+    
+    async function install() {
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+        console.log(deferredPrompt)
+        deferredPrompt.userChoice.then(function(choiceResult){
+        
+          if (choiceResult.outcome === 'accepted') {
+          console.log('Your PWA has been installed');
+          } else {
+          console.log('User chose to not install your PWA');
+          }
+          
+          deferredPrompt = null;
+          
+          });
+          
+        }
+      }
+    </script>
+
   </head>
 
   <body>
@@ -33,7 +62,7 @@
     <br>
     <br>
     <br>
-    <br><center></p><button>---УСТАНОВИТЬ PWA---</button></center>
+    <br><center></p><button onclick="install()">---УСТАНОВИТЬ PWA---</button></center>
     <br>
     <br>
     <br>
