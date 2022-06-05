@@ -11,7 +11,7 @@ class PWAConfApp {
   }
 
   async loadSpeakers() {
-    this.speakers = await this.fetchJSON('./speakers.json');
+    this.speakers = await this.fetchJSON('/02/speakers.json');
 
     this.speakersDiv.innerHTML = this.speakers
       .map(this.toSpeakerBlock)
@@ -19,7 +19,7 @@ class PWAConfApp {
   }
 
   async loadSchedule() {
-    const rawSchedule = await this.fetchJSON('./schedule.json');
+    const rawSchedule = await this.fetchJSON('/02/schedule.json');
 
     // Add speaker details to array
     this.schedule = rawSchedule.map(this.addSpeakerDetails, this);
