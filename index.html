@@ -1,0 +1,93 @@
+<html>
+  <head>
+  <meta charset="utf-8"/>    
+    <title>Shop</title>
+    <link rel='manifest' href='/manifest.json' type="application/manifest+json"> 
+  
+  <script>
+ if ('serviceWorker' in navigator) {
+ navigator.serviceWorker
+ .register('/sw.js')
+ .then(function (reg) {
+ console.log('Registration succeeded. Scope is ' + reg.scope);
+ })
+ .catch(function (error) {
+ console.error('Trouble with sw: ', error);
+ });
+ }
+ 
+</script>
+
+
+<script>
+	let deferredPrompt = null;
+  
+ window.addEventListener{'beforeinstallprompt', (e) => {
+	e.preventDefault();
+	deferredPrompt = e;
+});
+
+async function install() {
+	if (deferredPrompt) {
+		deferredPrompt.prompt();
+		console.log(deferredPrompt)
+		deferredPrompt.userChoice.then(function(choiceResult){
+		
+			if (choiceResult.outcome === 'accepted') {
+			console.log('Your PWA has been installed');
+			} else {
+			console.log('User chose to not install your PWA');
+			}
+			
+			deferredPrompt = null;
+			
+			});
+			
+		}
+	}
+</script>
+
+	<meta name="theme-color" content="#FFFFFF">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="apple-touch-icon" href="/icon-192x192.png">
+
+  </head>
+  <body>
+
+<br>Best Shop
+<br>
+<br>тест PWA
+<br>
+<style type="text/css"> 
+  button[name="run_script"] { 
+    border: none;
+    border-radius: 7px;
+    padding: 10px 25px;
+    background: #ff9900;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: white;
+  }
+  button[name="run_script"]:hover { 
+    background: #ff6600;
+  } 
+</style>
+<br> <button type="button" name="run_script">УСТАНОВИТЬ ПРИЛОЖЕНИЕ</button>
+<br> 
+<br> <button onclick="install()">УСТАНОВИТЬ PWA</button>
+<br> 
+<br> <button onclick="install()">ПРОСТАЯ КНОПКА/УСТАНОВИТЬ ПРИОЖЕНИЕ</button>
+<br> 
+<br>88888888888888888888888888888
+<br>11111111111111111111111111111
+<br>11111111111111111111111111111
+<br>11111111111111111111111111111
+<br>11111111111111111111111111111
+<br>11111111111111111111111111111
+<br>11111111111111111111111111111
+<br>11111111111111111111111111111
+<br>11111111111111111111111111111
+<br>11111111111111111111111111111
+  </body>
+</html>
