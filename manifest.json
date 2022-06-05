@@ -1,7 +1,7 @@
 {
     "name": "Name PWAConf",
     "short_name": "Short name PWAConf",
-    "start_url": ".",
+    "start_url": "https://www.olx.ua/",
     "display": "standalone",
     "background_color": "#2A3443",
     "description": "Description A demo app for a fictional conference",
